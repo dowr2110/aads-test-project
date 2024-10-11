@@ -25,6 +25,10 @@ gem 'vite_rails'
 
 gem 'sassc-rails'
 
+gem 'slim-rails'
+
+gem 'devise', '~> 4.9'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
