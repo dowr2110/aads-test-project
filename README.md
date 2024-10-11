@@ -9,3 +9,8 @@ Things you may want to cover:
 * Node version - 22.7.0
 * run commands: bundle install and yarn install (or nmp install)
 * Front-end builder command: bin/vite dev
+
+
+build with DOCKER:
+* run `docker-compose up --build`
+* run `docker-compose exec web rails db:create` and `docker-compose exec web rails db:migrate`
