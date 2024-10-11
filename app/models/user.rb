@@ -11,4 +11,20 @@ class User < ApplicationRecord
   has_many :followers, through: :subscribers, source: :follower
 
   has_many :comments, dependent: :destroy
+
+  def subscriptions_posts
+    Post.where(user: followings.pluck(:id)).order(created_at: :desc)
+  end
+
+  def follow(user)
+    subscriptions.create(following: user) unless following?(user)
+  end
+
+  def unfollow(user)
+    subscriptions.find_by(following: user).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
 end

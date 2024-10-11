@@ -1,6 +1,33 @@
 h1 Welcome to the Home Page
 - if user_signed_in?
   = link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'button'
+  br
+  = link_to 'Create a new post', new_post_path
+  br
+  = link_to 'Find users for subscribe', follows_path
+
+  h2 Following posts
+
+  - if @posts.any?
+    - @posts.each do |post|
+      .post
+        h3 style='color: green'
+          = "#{post.content} by -> #{post.user.email}"
+
+        = form_with model: [post, Comment.new], local: true do |f|
+          .form-group
+            = f.label :content, 'Add comment:'
+            = f.text_area :content
+          = f.submit 'Send'
+
+        - if post.comments.parents.any?
+          .comments
+            - post.comments.parents.each do |comment|
+              = render partial: 'comments/comment', locals: { comment: comment }
+
+  - else
+    p You dont have any posts yet
+
 - else
   = link_to 'Sign up', new_user_registration_path, class: 'button'
   br

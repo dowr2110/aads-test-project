@@ -1,0 +1,7 @@
+= form_with model: [post, post.comments.build], local: true do |f|
+  .form-group
+    = f.label :content, 'Your comment'
+    = f.text_area :content, rows: 2
+
+  .form-group
+    = f.submit 'Add comment'

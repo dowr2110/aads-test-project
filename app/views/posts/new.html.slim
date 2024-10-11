@@ -1,0 +1,11 @@
+h1 Create new post
+
+= form_with model: @post, local: true do |f|
+  .form-group
+    = f.label :content, 'Text'
+    = f.text_area :content, rows: 5
+
+  .form-group
+    = f.submit 'Create post'
+
+= link_to 'Home', root_path

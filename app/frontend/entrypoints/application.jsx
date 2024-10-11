@@ -1,5 +1,5 @@
 import '../styles/application.scss'
-// import '../packs/test.js'
+import '../packs/comments.js'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -21,3 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+import Rails from "@rails/ujs";
+Rails.start();

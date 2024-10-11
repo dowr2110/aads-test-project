@@ -1,0 +1,16 @@
+h1 Users for subscription
+
+- if @users.any?
+  - @users.each do |user|
+    .user
+      p
+        strong= user.email
+
+        - if current_user.following?(user)
+          = link_to 'Unsubscribe', unfollow_user_path(user), method: :delete
+        - else
+          = link_to 'Subscribe', follow_user_path(user), method: :post
+- else
+  p There are no users to subscribe to
+
+= link_to 'Home', root_path

@@ -1,0 +1,20 @@
+.comment
+  p
+    strong= comment.user.email
+    | :
+    = comment.content
+
+  p
+    = link_to 'Reply', '#', class: 'reply-link', data: { comment_id: comment.id }
+
+  = form_with model: [comment.post, Comment.new], local: true, id: "reply-form-#{comment.id}", class: 'reply-form' do |f|
+    = f.hidden_field :parent_id, value: comment.id
+    .form-group
+      = f.label :content, 'Add reply:'
+      = f.text_area :content
+    = f.submit 'send'
+
+  - if comment.replies.any?
+    .replies
+      - comment.replies.each do |reply|
+        = render partial: 'comments/comment', locals: { comment: reply }
