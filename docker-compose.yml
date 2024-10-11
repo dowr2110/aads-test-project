@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: bash -c "bundle exec rails s -b '0.0.0.0' -p 3000"
+    volumes:
+      - .:/aads_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/aads_test_project_development
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: aads_test_project_development
+    ports:
+      - "5433:5432"
