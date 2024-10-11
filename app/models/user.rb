@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_many :subscribers, foreign_key: :following_id, class_name: 'Subscription'
   has_many :followers, through: :subscribers, source: :follower
+
+  has_many :comments, dependent: :destroy
 end
